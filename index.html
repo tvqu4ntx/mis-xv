@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años - Invitación</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-clouds: #FFF8E7;       
+            --blue-clear-skies: #8CC1E9;
+            --blue-deep-ocean: #12284B; 
+            --blue-blueberry: #0055A0;  
+            --blue-bluebird: #438BC4;   
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-clouds);
+            color: var(--blue-deep-ocean);
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER / PORTADA --- */
+        header {
+            min-height: 100vh;
+            /* RECUERDA: Debes tener la imagen 'fondo-flores.png' en la misma carpeta */
+            background: url('fondo-flores.png');
+            background-size: cover; 
+            background-position: center center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--blue-deep-ocean); 
+            padding: 20px;
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(3rem, 10vw, 6rem); 
+            margin-bottom: 10px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(255, 248, 231, 0.7); 
+            animation: fadeInDown 2s ease;
+        }
+
+        h2 {
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            animation: fadeInUp 2s ease;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 90%;
+        }
+
+        /* --- CUENTA REGRESIVA --- */
+        .countdown {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            animation: fadeIn 3s ease;
+            width: 100%;
+        }
+
+        .time-box {
+            background: rgba(18, 40, 75, 0.9);
+            color: var(--bg-clouds);
+            padding: 10px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            min-width: 70px;
+            text-align: center;
+            border: 1px solid var(--blue-bluebird);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            flex: 1 1 auto;
+            max-width: 100px;
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .time-box label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--blue-clear-skies);
+        }
+
+        /* --- DETALLES --- */
+        .details {
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--bg-clouds), #e6f0fa);
+        }
+
+        /* CLASE NUEVA PARA TÍTULOS LEGIBLES */
+        .section-title {
+            font-family: 'Montserrat', sans-serif; /* Fuente legible */
+            font-weight: 600; /* Negrita */
+            text-transform: uppercase; /* Mayúsculas */
+            letter-spacing: 4px; /* Espacio elegante entre letras */
+            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Tamaño adaptable */
+            color: var(--blue-deep-ocean);
+            margin-bottom: 30px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(18, 40, 75, 0.15);
+            width: 100%; 
+            max-width: 350px; 
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--blue-blueberry);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--blue-blueberry);
+            margin-bottom: 15px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--blue-bluebird);
+        }
+
+        /* --- BOTONES --- */
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: var(--blue-blueberry);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 85, 160, 0.3);
+            width: 80%;
+            max-width: 200px;
+        }
+
+        .btn:hover {
+            background-color: var(--blue-deep-ocean);
+        }
+
+        .btn-whatsapp {
+            background-color: #25D366;
+            font-size: 1rem;
+        }
+
+        /* --- RSVP --- */
+        .rsvp-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: white;
+        }
+
+        footer {
+            background-color: var(--blue-deep-ocean);
+            color: var(--bg-clouds);
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (min-width: 768px) {
+            .time-box span { font-size: 2.5rem; }
+            .time-box { min-width: 90px; }
+            .card { width: 300px; }
+            h1 { font-size: 5rem; }
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>Mis Quince Años</h2>
+        <h1>Keily Camila</h1>
+        <p>Acompáñame a celebrar una noche mágica</p>
+        
+        <div class="countdown">
+            <div class="time-box"><span id="days">00</span><label>Días</label></div>
+            <div class="time-box"><span id="hours">00</span><label>Horas</label></div>
+            <div class="time-box"><span id="minutes">00</span><label>Min</label></div>
+            <div class="time-box"><span id="seconds">00</span><label>Seg</label></div>
+        </div>
+    </header>
+
+    <section class="details">
+        <h2 class="section-title">Detalles</h2>
+        
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">Sábado, 14 de Marzo de 2026</p>
+
+        <div class="card-container">
+            <div class="card">
+                <div class="icon">⛪</div>
+                <h3>Ceremonia</h3>
+                <p><strong>Parroquia Sagrados Corazones de Jesus y Maria</strong></p>
+                <p>5:00 PM</p> <p>San Martin No 300, Lomas del Real de Jarachina Sur</p>
+                <a href="https://maps.app.goo.gl/TU_LINK_REAL_AQUI" target="_blank" class="btn">Mapa</a>
+            </div>
+
+            <div class="card">
+                <div class="icon">🥂</div>
+                <h3>Recepción</h3>
+                <p><strong>Salón "Esmeralda"</strong></p>
+                <p>7:00 PM</p> <p>Av. Tecnológico esq. San Roberto 100-4, Jarachina Sur</p>
+                <a href="https://maps.app.goo.gl/TU_LINK_REAL_AQUI" target="_blank" class="btn">Mapa</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="rsvp-section">
+        <h2 class="section-title">Confirmar Asistencia</h2>
+        
+        <p style="max-width: 600px; margin: 15px auto;">Tu presencia hará de esta noche un recuerdo inolvidable.</p>
+        
+        <button onclick="confirmarAsistencia()" class="btn btn-whatsapp">
+            Confirmar en WhatsApp 📱
+        </button>
+    </section>
+
+    <footer>
+        <p>Te esperamos con mucha ilusión.</p>
+        <p style="font-family: 'Great Vibes'; font-size: 1.5rem; margin-top: 10px;">Familia Escobar De La Paz</p>
+    </footer>
+
+    <script>
+        // --- FECHA DEL EVENTO ACTUALIZADA ---
+        const fechaEvento = new Date(2026, 2, 14, 18, 0, 0).getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = fechaEvento - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown").innerHTML = "<h2 style='font-size:2rem'>¡Es hoy!</h2>";
+            } else {
+                document.getElementById("days").innerHTML = days;
+                document.getElementById("hours").innerHTML = hours;
+                document.getElementById("minutes").innerHTML = minutes;
+                document.getElementById("seconds").innerHTML = seconds;
+            }
+        }, 1000);
+
+        function confirmarAsistencia() {
+            const telefono = "528994607690"; 
+            const mensaje = "Hola, confirmo mi asistencia a los XV de Keily Camila el 14 de Marzo.";
+            const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
