@@ -6,12 +6,14 @@
     <title>Mis XV Años - Invitación</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
+        /* PALETA DE COLORES */
         :root {
             --bg-clouds: #FFF8E7;       
             --blue-clear-skies: #8CC1E9;
             --blue-deep-ocean: #12284B; 
             --blue-blueberry: #0055A0;  
             --blue-bluebird: #438BC4;   
+            --blue-lol: #D1CFCB;
         }
 
         * {
@@ -30,7 +32,6 @@
         /* --- HEADER / PORTADA --- */
         header {
             min-height: 100vh;
-            /* RECUERDA: Debes tener la imagen 'fondo-flores.png' en la misma carpeta */
             background: url('fondo-flores.png');
             background-size: cover; 
             background-position: center center;
@@ -40,18 +41,21 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            color: var(--blue-deep-ocean); 
+            color: var(--blue-lol); 
             padding: 20px;
             position: relative;
         }
 
+        /* Animación inicial del texto */
         h1 {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3rem, 10vw, 6rem); 
             margin-bottom: 10px;
             line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(255, 248, 231, 0.7); 
-            animation: fadeInDown 2s ease;
+            text-shadow: 2px 2px 4px rgba(0, 222, 163, 0.7); 
+            opacity: 0; /* Empieza invisible */
+            animation: fadeInDown 1.5s ease forwards; /* forwards mantiene el estado final */
+            animation-delay: 0.5s;
         }
 
         h2 {
@@ -59,13 +63,17 @@
             letter-spacing: 3px;
             text-transform: uppercase;
             font-size: clamp(1rem, 4vw, 1.5rem);
-            animation: fadeInUp 2s ease;
             margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease forwards;
         }
 
         header p {
             font-size: 1.1rem;
             max-width: 90%;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 1s;
         }
 
         /* --- CUENTA REGRESIVA --- */
@@ -75,8 +83,10 @@
             justify-content: center;
             gap: 15px;
             margin-top: 40px;
-            animation: fadeIn 3s ease;
             width: 100%;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+            animation-delay: 1.5s;
         }
 
         .time-box {
@@ -91,6 +101,11 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             flex: 1 1 auto;
             max-width: 100px;
+            transition: transform 0.3s ease;
+        }
+
+        .time-box:hover {
+            transform: scale(1.1); /* Efecto pop al pasar el mouse */
         }
 
         .time-box span {
@@ -105,20 +120,35 @@
             color: var(--blue-clear-skies);
         }
 
-        /* --- DETALLES --- */
-        .details {
+        /* --- ANIMACIONES DE SCROLL (REVEAL) --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px); /* Empiezan más abajo */
+            transition: all 1s ease; /* Tardan 1 segundo en acomodarse */
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- SECCIONES GENERALES --- */
+        section {
             padding: 60px 20px;
             text-align: center;
+            overflow: hidden; /* Para evitar desbordes en animaciones */
+        }
+
+        .details {
             background: linear-gradient(to bottom, var(--bg-clouds), #e6f0fa);
         }
 
-        /* CLASE NUEVA PARA TÍTULOS LEGIBLES */
         .section-title {
-            font-family: 'Montserrat', sans-serif; /* Fuente legible */
-            font-weight: 600; /* Negrita */
-            text-transform: uppercase; /* Mayúsculas */
-            letter-spacing: 4px; /* Espacio elegante entre letras */
-            font-size: clamp(1.8rem, 5vw, 2.5rem); /* Tamaño adaptable */
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
             color: var(--blue-deep-ocean);
             margin-bottom: 30px;
         }
@@ -138,12 +168,13 @@
             box-shadow: 0 10px 30px rgba(18, 40, 75, 0.15);
             width: 100%; 
             max-width: 350px; 
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border-top: 5px solid var(--blue-blueberry);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px); /* Sube un poco más */
+            box-shadow: 0 15px 40px rgba(18, 40, 75, 0.25);
         }
 
         .card h3 {
@@ -157,9 +188,44 @@
             font-size: 2.5rem;
             margin-bottom: 10px;
             color: var(--blue-bluebird);
+            display: inline-block;
+            transition: transform 0.5s ease;
+        }
+        
+        /* Animación del icono al pasar el mouse por la tarjeta */
+        .card:hover .icon {
+            transform: rotateY(360deg);
         }
 
-        /* --- BOTONES --- */
+        /* --- LLUVIA DE SOBRES --- */
+        .gift-section {
+            background: linear-gradient(to bottom, rgba(255, 248, 231, 0) 70%, var(--bg-clouds) 100%), 
+                        url('fondo-lluvia.png');
+            background-size: cover;
+            background-position: center;
+            border-top: 1px solid #eee;
+            border-bottom: none; 
+            color: var(--bg-clouds); 
+            padding-bottom: 80px; 
+        }
+        
+        .gift-box {
+            border: 2px dashed var(--blue-blueberry);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: rgba(255, 248, 231, 0.9);
+            color: var(--blue-deep-ocean);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- BOTONES E INPUTS --- */
         .btn {
             display: inline-block;
             margin-top: 15px;
@@ -169,16 +235,20 @@
             text-decoration: none;
             border-radius: 25px;
             font-weight: bold;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
             border: none;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0, 85, 160, 0.3);
             width: 80%;
             max-width: 200px;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn:hover {
             background-color: var(--blue-deep-ocean);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 85, 160, 0.5);
         }
 
         .btn-whatsapp {
@@ -186,11 +256,33 @@
             font-size: 1rem;
         }
 
-        /* --- RSVP --- */
-        .rsvp-section {
-            padding: 50px 20px;
+        .input-invitados {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid var(--blue-bluebird);
             text-align: center;
-            background-color: white;
+            font-size: 1.2rem;
+            width: 80px;
+            margin: 10px;
+            color: var(--blue-deep-ocean);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            transition: border-color 0.3s;
+        }
+        
+        .input-invitados:focus {
+            outline: none;
+            border-color: var(--blue-blueberry);
+            box-shadow: 0 0 5px rgba(0, 85, 160, 0.3);
+        }
+
+        /* --- CONFIRMAR ASISTENCIA --- */
+        .rsvp-section {
+            padding: 60px 20px;
+            text-align: center;
+            background: url('fondo-rsvp.png');
+            background-size: cover;
+            background-position: center;
         }
 
         footer {
@@ -208,6 +300,7 @@
             h1 { font-size: 5rem; }
         }
 
+        /* KEYFRAMES */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-30px); }
             to { opacity: 1; transform: translateY(0); }
@@ -237,35 +330,49 @@
         </div>
     </header>
 
-    <section class="details">
+    <section class="details reveal">
         <h2 class="section-title">Detalles</h2>
         
         <p style="font-size: 1.2rem; margin-bottom: 20px;">Sábado, 14 de Marzo de 2026</p>
 
         <div class="card-container">
-            <div class="card">
+            <div class="card reveal">
                 <div class="icon">⛪</div>
                 <h3>Ceremonia</h3>
                 <p><strong>Parroquia Sagrados Corazones de Jesus y Maria</strong></p>
                 <p>5:00 PM</p> <p>San Martin No 300, Lomas del Real de Jarachina Sur</p>
-                <a href="https://maps.app.goo.gl/TU_LINK_REAL_AQUI" target="_blank" class="btn">Mapa</a>
+                <a href="https://maps.app.goo.gl/g9vPMPu1HV1hTqRu7" target="_blank" class="btn">Mapa</a>
             </div>
 
-            <div class="card">
+            <div class="card reveal">
                 <div class="icon">🥂</div>
                 <h3>Recepción</h3>
                 <p><strong>Salón "Esmeralda"</strong></p>
                 <p>7:00 PM</p> <p>Av. Tecnológico esq. San Roberto 100-4, Jarachina Sur</p>
-                <a href="https://maps.app.goo.gl/TU_LINK_REAL_AQUI" target="_blank" class="btn">Mapa</a>
+                <a href="https://maps.app.goo.gl/kxSuNqmajEmjm2s5A" target="_blank" class="btn">Mapa</a>
             </div>
         </div>
     </section>
 
-    <section class="rsvp-section">
+    <section class="gift-section reveal">
+        <h2 class="section-title" style="color: var(--bg-clouds);">Lluvia de Sobres</h2>
+        <div class="gift-box reveal">
+            <div class="icon">✉️</div>
+            <p style="font-style: italic; margin-bottom: 15px; font-size: 1.1rem;">"Tu presencia es mi mejor regalo"</p>
+            <p>Pero si deseas tener un detalle conmigo, te agradezco que sea en efectivo y lo deposites en el cofre que encontrarás en la entrada.</p>
+        </div>
+    </section>
+
+    <section class="rsvp-section reveal">
         <h2 class="section-title">Confirmar Asistencia</h2>
         
-        <p style="max-width: 600px; margin: 15px auto;">Tu presencia hará de esta noche un recuerdo inolvidable.</p>
+        <p style="max-width: 600px; margin: 15px auto;">Por favor, confirma cuántas personas asistirán para reservar su lugar.</p>
         
+        <div style="margin-bottom: 20px;">
+            <label for="numInvitados" style="display:block; margin-bottom:5px; font-weight:bold;">Número de personas:</label>
+            <input type="number" id="numInvitados" class="input-invitados" min="1" max="10" value="1">
+        </div>
+
         <button onclick="confirmarAsistencia()" class="btn btn-whatsapp">
             Confirmar en WhatsApp 📱
         </button>
@@ -277,7 +384,7 @@
     </footer>
 
     <script>
-        // --- FECHA DEL EVENTO ACTUALIZADA ---
+        // --- FECHA DEL EVENTO ---
         const fechaEvento = new Date(2026, 2, 14, 18, 0, 0).getTime();
 
         const timer = setInterval(function() {
@@ -302,10 +409,32 @@
 
         function confirmarAsistencia() {
             const telefono = "528994607690"; 
-            const mensaje = "Hola, confirmo mi asistencia a los XV de Keily Camila el 14 de Marzo.";
+            const numPersonas = document.getElementById("numInvitados").value;
+            const mensaje = `Hola, confirmo mi asistencia a los XV de Keily Camila el 14 de Marzo. Asistiremos ${numPersonas} persona(s).`;
             const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
             window.open(url, '_blank');
         }
+
+        // --- SISTEMA DE ANIMACIÓN AL HACER SCROLL ---
+        // Esto detecta cuando un elemento entra en la pantalla
+        window.addEventListener('scroll', reveal);
+
+        function reveal(){
+            var reveals = document.querySelectorAll('.reveal');
+
+            for(var i = 0; i < reveals.length; i++){
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 150; // Ajusta cuándo empieza la animación
+
+                if(revealtop < windowheight - revealpoint){
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+        
+        // Ejecutar una vez al inicio para mostrar lo que ya se ve
+        reveal();
     </script>
 </body>
 </html>
