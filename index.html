@@ -29,6 +29,37 @@
             overflow-x: hidden;
         }
 
+        /* --- BOTÓN DE MÚSICA --- */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(18, 40, 75, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-control.playing {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         /* --- HEADER / PORTADA --- */
         header {
             min-height: 100vh;
@@ -46,15 +77,14 @@
             position: relative;
         }
 
-        /* Animación inicial del texto */
         h1 {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(3rem, 10vw, 6rem); 
             margin-bottom: 10px;
             line-height: 1.1;
             text-shadow: 2px 2px 4px rgba(0, 222, 163, 0.7); 
-            opacity: 0; /* Empieza invisible */
-            animation: fadeInDown 1.5s ease forwards; /* forwards mantiene el estado final */
+            opacity: 0;
+            animation: fadeInDown 1.5s ease forwards;
             animation-delay: 0.5s;
         }
 
@@ -104,9 +134,7 @@
             transition: transform 0.3s ease;
         }
 
-        .time-box:hover {
-            transform: scale(1.1); /* Efecto pop al pasar el mouse */
-        }
+        .time-box:hover { transform: scale(1.1); }
 
         .time-box span {
             display: block;
@@ -120,11 +148,11 @@
             color: var(--blue-clear-skies);
         }
 
-        /* --- ANIMACIONES DE SCROLL (REVEAL) --- */
+        /* --- REVEAL ANIMATIONS --- */
         .reveal {
             opacity: 0;
-            transform: translateY(50px); /* Empiezan más abajo */
-            transition: all 1s ease; /* Tardan 1 segundo en acomodarse */
+            transform: translateY(50px);
+            transition: all 1s ease;
         }
 
         .reveal.active {
@@ -132,16 +160,9 @@
             transform: translateY(0);
         }
 
-        /* --- SECCIONES GENERALES --- */
-        section {
-            padding: 60px 20px;
-            text-align: center;
-            overflow: hidden; /* Para evitar desbordes en animaciones */
-        }
+        section { padding: 60px 20px; text-align: center; overflow: hidden; }
 
-        .details {
-            background: linear-gradient(to bottom, var(--bg-clouds), #e6f0fa);
-        }
+        .details { background: linear-gradient(to bottom, var(--bg-clouds), #e6f0fa); }
 
         .section-title {
             font-family: 'Montserrat', sans-serif;
@@ -172,10 +193,7 @@
             border-top: 5px solid var(--blue-blueberry);
         }
 
-        .card:hover {
-            transform: translateY(-10px); /* Sube un poco más */
-            box-shadow: 0 15px 40px rgba(18, 40, 75, 0.25);
-        }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(18, 40, 75, 0.25); }
 
         .card h3 {
             color: var(--blue-blueberry);
@@ -184,28 +202,13 @@
             font-size: 2.2rem;
         }
 
-        .icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: var(--blue-bluebird);
-            display: inline-block;
-            transition: transform 0.5s ease;
-        }
-        
-        /* Animación del icono al pasar el mouse por la tarjeta */
-        .card:hover .icon {
-            transform: rotateY(360deg);
-        }
+        .icon { font-size: 2.5rem; margin-bottom: 10px; color: var(--blue-bluebird); transition: transform 0.5s ease; }
+        .card:hover .icon { transform: rotateY(360deg); }
 
-        /* --- LLUVIA DE SOBRES --- */
         .gift-section {
-            background: linear-gradient(to bottom, rgba(255, 248, 231, 0) 70%, var(--bg-clouds) 100%), 
-                        url('fondo-lluvia.png');
+            background: linear-gradient(to bottom, rgba(255, 248, 231, 0) 70%, var(--bg-clouds) 100%), url('fondo-lluvia.png');
             background-size: cover;
             background-position: center;
-            border-top: 1px solid #eee;
-            border-bottom: none; 
-            color: var(--bg-clouds); 
             padding-bottom: 80px; 
         }
         
@@ -217,15 +220,8 @@
             margin: 20px auto;
             background-color: rgba(255, 248, 231, 0.9);
             color: var(--blue-deep-ocean);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
         }
 
-        .gift-box:hover {
-            transform: scale(1.02);
-        }
-
-        /* --- BOTONES E INPUTS --- */
         .btn {
             display: inline-block;
             margin-top: 15px;
@@ -238,51 +234,19 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 85, 160, 0.3);
             width: 80%;
             max-width: 200px;
-            position: relative;
-            overflow: hidden;
         }
 
-        .btn:hover {
-            background-color: var(--blue-deep-ocean);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 85, 160, 0.5);
-        }
-
-        .btn-whatsapp {
-            background-color: #25D366;
-            font-size: 1rem;
-        }
+        .btn-whatsapp { background-color: #25D366; font-size: 1rem; }
 
         .input-invitados {
             padding: 10px;
             border-radius: 10px;
             border: 2px solid var(--blue-bluebird);
             text-align: center;
-            font-size: 1.2rem;
             width: 80px;
-            margin: 10px;
-            color: var(--blue-deep-ocean);
-            font-family: 'Montserrat', sans-serif;
             font-weight: bold;
-            transition: border-color 0.3s;
-        }
-        
-        .input-invitados:focus {
-            outline: none;
-            border-color: var(--blue-blueberry);
-            box-shadow: 0 0 5px rgba(0, 85, 160, 0.3);
-        }
-
-        /* --- CONFIRMAR ASISTENCIA --- */
-        .rsvp-section {
-            padding: 60px 20px;
-            text-align: center;
-            background: url('fondo-rsvp.png');
-            background-size: cover;
-            background-position: center;
         }
 
         footer {
@@ -290,32 +254,23 @@
             color: var(--bg-clouds);
             text-align: center;
             padding: 30px 20px;
-            font-size: 0.9rem;
         }
 
-        @media (min-width: 768px) {
-            .time-box span { font-size: 2.5rem; }
-            .time-box { min-width: 90px; }
-            .card { width: 300px; }
-            h1 { font-size: 5rem; }
-        }
-
-        /* KEYFRAMES */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
+
+    <audio id="miMusica" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <button id="musicBtn" class="music-control" onclick="toggleMusic()">
+        <span id="musicIcon">🎵</span>
+    </button>
 
     <header>
         <h2>Mis Quince Años</h2>
@@ -332,7 +287,6 @@
 
     <section class="details reveal">
         <h2 class="section-title">Detalles</h2>
-        
         <p style="font-size: 1.2rem; margin-bottom: 20px;">Sábado, 14 de Marzo de 2026</p>
 
         <div class="card-container">
@@ -340,16 +294,18 @@
                 <div class="icon">⛪</div>
                 <h3>Ceremonia</h3>
                 <p><strong>Parroquia Sagrados Corazones de Jesus y Maria</strong></p>
-                <p>5:00 PM</p> <p>San Martin No 300, Lomas del Real de Jarachina Sur</p>
-                <a href="https://maps.app.goo.gl/g9vPMPu1HV1hTqRu7" target="_blank" class="btn">Mapa</a>
+                <p>5:00 PM</p>
+                <p>San Martin No 300, Lomas del Real de Jarachina Sur</p>
+                <a href="https://maps.google.com" target="_blank" class="btn">Mapa</a>
             </div>
 
             <div class="card reveal">
                 <div class="icon">🥂</div>
                 <h3>Recepción</h3>
                 <p><strong>Salón "Esmeralda"</strong></p>
-                <p>7:00 PM</p> <p>Av. Tecnológico esq. San Roberto 100-4, Jarachina Sur</p>
-                <a href="https://maps.app.goo.gl/kxSuNqmajEmjm2s5A" target="_blank" class="btn">Mapa</a>
+                <p>7:00 PM</p>
+                <p>Av. Tecnológico esq. San Roberto 100-4, Jarachina Sur</p>
+                <a href="https://maps.google.com" target="_blank" class="btn">Mapa</a>
             </div>
         </div>
     </section>
@@ -365,7 +321,6 @@
 
     <section class="rsvp-section reveal">
         <h2 class="section-title">Confirmar Asistencia</h2>
-        
         <p style="max-width: 600px; margin: 15px auto;">Por favor, confirma cuántas personas asistirán para reservar su lugar.</p>
         
         <div style="margin-bottom: 20px;">
@@ -384,7 +339,40 @@
     </footer>
 
     <script>
-        // --- FECHA DEL EVENTO ---
+        // --- LÓGICA DE AUDIO ---
+        const musica = document.getElementById("miMusica");
+        const musicBtn = document.getElementById("musicBtn");
+        const musicIcon = document.getElementById("musicIcon");
+        let estaReproduciendo = false;
+
+        // Intentar reproducir al primer clic en cualquier parte de la página
+        document.body.addEventListener('click', function() {
+            if (!estaReproduciendo) {
+                playMusic();
+            }
+        }, { once: true }); // Solo se ejecuta la primera vez
+
+        function playMusic() {
+            musica.play().then(() => {
+                estaReproduciendo = true;
+                musicBtn.classList.add('playing');
+                musicIcon.innerText = "⏸️";
+            }).catch(error => console.log("Autoplay bloqueado aún"));
+        }
+
+        function toggleMusic() {
+            if (musica.paused) {
+                musica.play();
+                musicIcon.innerText = "⏸️";
+                musicBtn.classList.add('playing');
+            } else {
+                musica.pause();
+                musicIcon.innerText = "🎵";
+                musicBtn.classList.remove('playing');
+            }
+        }
+
+        // --- CUENTA REGRESIVA ---
         const fechaEvento = new Date(2026, 2, 14, 18, 0, 0).getTime();
 
         const timer = setInterval(function() {
@@ -398,7 +386,7 @@
 
             if (distance < 0) {
                 clearInterval(timer);
-                document.querySelector(".countdown").innerHTML = "<h2 style='font-size:2rem'>¡Es hoy!</h2>";
+                document.querySelector(".countdown").innerHTML = "<h2>¡Es hoy!</h2>";
             } else {
                 document.getElementById("days").innerHTML = days;
                 document.getElementById("hours").innerHTML = hours;
@@ -411,29 +399,21 @@
             const telefono = "528994607690"; 
             const numPersonas = document.getElementById("numInvitados").value;
             const mensaje = `Hola, confirmo mi asistencia a los XV de Keily Camila el 14 de Marzo. Asistiremos ${numPersonas} persona(s).`;
-            const url = `https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`;
-            window.open(url, '_blank');
+            window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`, '_blank');
         }
 
-        // --- SISTEMA DE ANIMACIÓN AL HACER SCROLL ---
-        // Esto detecta cuando un elemento entra en la pantalla
+        // --- ANIMACIÓN SCROLL ---
         window.addEventListener('scroll', reveal);
-
         function reveal(){
             var reveals = document.querySelectorAll('.reveal');
-
             for(var i = 0; i < reveals.length; i++){
                 var windowheight = window.innerHeight;
                 var revealtop = reveals[i].getBoundingClientRect().top;
-                var revealpoint = 150; // Ajusta cuándo empieza la animación
-
-                if(revealtop < windowheight - revealpoint){
+                if(revealtop < windowheight - 150){
                     reveals[i].classList.add('active');
                 }
             }
         }
-        
-        // Ejecutar una vez al inicio para mostrar lo que ya se ve
         reveal();
     </script>
 </body>
